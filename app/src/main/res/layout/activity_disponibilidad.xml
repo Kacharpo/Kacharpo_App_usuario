@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisponibilidadActivity"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tVDisponibilidadTitulo"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="141dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="20dp"
+        android:text="Disponibilidad"
+        android:textColor="@color/grey"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_marginTop="90dp"
+        android:id="@+id/imageViewAsiento"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        app:srcCompat="@drawable/ic_stat_asientorojo"
+        />
+
+    <LinearLayout
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tVDisponibilidad"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="Por el momento el transporte esta a su maxima capacidad"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tVDisponibilidad2"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="16/16"
+            />
+    </LinearLayout>
+    <ImageView
+        android:layout_marginTop="180dp"
+        android:id="@+id/imageViewAsiento2"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        app:srcCompat="@drawable/ic_stat_asientoverde"
+        />
+
+    <LinearLayout
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="180dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tVDisponibilidad3"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:text="El transporte se encuentra con capacidad"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tVDisponibilidad4"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:text="10/16"
+            />
+    </LinearLayout>
+</RelativeLayout>

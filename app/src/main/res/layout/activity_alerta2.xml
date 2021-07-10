@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AlertaActivity">
+
+    <TextView
+        android:id="@+id/textVAlerta"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="18dp"
+        android:text="Alertas"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="1dp" />
+
+    <Button
+        android:id="@+id/BtnMensajeAlerta"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:background="@color/red"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginLeft="20dp"
+        android:text="Mensaje" />
+    <ImageView
+        android:id="@+id/imageViewBuzon"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="90dp"
+        app:srcCompat="@drawable/ic_stat_buzon" />
+    <Button
+        android:id="@+id/BtnInundacionAlerta"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/red"
+        android:text="Inundacion" />
+
+    <ImageView
+        android:id="@+id/imageViewInundacion"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/BtnInundacionAlerta"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/ic_stat_inundacion" />
+    <Button
+        android:id="@+id/BtnServicioP"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="310dp"
+        android:background="@color/red"
+        android:text="ServicioP" />
+
+    <ImageView
+        android:id="@+id/imageViewServicioP"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/BtnServicioP"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/ic_stat_serviciop" />
+
+    <Button
+        android:id="@+id/BtnServicioTarjeta"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/red"
+        android:text="Tarjeta" />
+    <ImageView
+        android:id="@+id/imageViewTarjeta"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="485dp"
+        android:layout_marginLeft="90dp"
+        app:srcCompat="@drawable/ic_stat_tarjeta" />
+    <Button
+        android:id="@+id/BtnMensajeAlerta1"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:background="@color/red"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginLeft="198dp"
+        android:text="Asaltante" />
+
+    <Button
+        android:id="@+id/BtnInundacionAlerta2"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="198dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/red"
+        android:text="Trafico" />
+
+    <Button
+        android:id="@+id/BtnServicioP3"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="198dp"
+        android:layout_marginTop="310dp"
+        android:background="@color/red"
+        android:text="Disponibilidad" />
+
+    <Button
+        android:id="@+id/BtnServicioTarjeta4"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="198dp"
+        android:layout_marginTop="420dp"
+        android:background="@color/red"
+        android:text="Asistencia" />
+
+    <ImageView
+        android:id="@+id/imageViewAsistencia"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="264dp"
+        android:layout_marginTop="485dp"
+        app:srcCompat="@drawable/ic_stat_asistencia" />
+
+    <ImageView
+        android:id="@+id/imageViewAsaltante"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="264dp"
+        android:layout_marginTop="150dp"
+        app:srcCompat="@drawable/ic_stat_asaltante" />
+
+    <ImageView
+        android:id="@+id/imageViewCar"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/BtnServicioP3"
+        android:layout_marginLeft="264dp"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/ic_stat_car" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/BtnInundacionAlerta2"
+        android:layout_marginLeft="264dp"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/ic_stat_traffic" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:background="@drawable/border_set"
+        android:layout_width="380dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="558dp"
+        android:layout_marginLeft="5dp"
+        android:text="Notificaciones" />
+
+
+
+</RelativeLayout>
