@@ -11,8 +11,8 @@
         android:theme="@style/Theme.App_usuario">
         <activity android:name=".DisponibilidadActivity"></activity>
         <activity android:name=".AlertaActivity" />
-        <activity android:name=".RegistroUsuario" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".RegistroUsuario">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

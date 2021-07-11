@@ -29,8 +29,8 @@
 
     <TextView
         android:id="@+id/textVnombreRApellido"
-        android:layout_width="390dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
         android:text="Apellido"
