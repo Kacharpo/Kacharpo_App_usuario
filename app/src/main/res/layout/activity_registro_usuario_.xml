@@ -13,13 +13,13 @@
         android:layout_height="222dp"
         app:srcCompat="@drawable/logo_transparent" />
 
-    <TextView
+    <EditText
         android:id="@+id/textVnombreRUsuario"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
-        android:text="Nombre"
+        android:hint="Nombre"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -27,13 +27,13 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="1dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/textVnombreRApellido"
         android:layout_width="match_parent"
         android:layout_height="27dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
-        android:text="Apellido"
+        android:hint="Apellido"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -41,13 +41,13 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="1dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/textViewNumRegUsuario"
         android:layout_width="395dp"
         android:layout_height="30dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
-        android:text="Numero"
+        android:hint="Numero"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -55,13 +55,13 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="295dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/textVCorreoRegUsuario"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
-        android:text="Correo"
+        android:hint="Correo"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16dp"
@@ -79,7 +79,6 @@
         android:hint=" Fecha de nacimiento"
         android:inputType="date"
         android:textAlignment="center"
-        android:textColorHint="@color/black"
         android:textSize="16dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-3dp"
@@ -95,7 +94,6 @@
         android:hint=" Ingrese su contraseña"
         android:inputType="textPassword"
         android:textAlignment="center"
-        android:textColorHint="@color/black"
         android:textSize="16dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
@@ -111,7 +109,6 @@
         android:hint=" Ingrese su contraseña de nuevo"
         android:inputType="textPassword"
         android:textAlignment="center"
-        android:textColorHint="@color/black"
         android:textSize="16dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-3dp"
