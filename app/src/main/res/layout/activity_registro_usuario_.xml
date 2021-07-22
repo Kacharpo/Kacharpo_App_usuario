@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="222dp"
+        android:layout_height="191dp"
         app:srcCompat="@drawable/logo_transparent" />
 
     <EditText
@@ -43,7 +43,7 @@
 
     <EditText
         android:id="@+id/textViewNumRegUsuario"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
@@ -71,7 +71,7 @@
 
     <EditText
         android:id="@+id/editTDFechaNacRUsuario"
-        android:layout_width="391dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
@@ -83,10 +83,22 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-3dp"
         tools:layout_editor_absoluteY="1dp" />
-
+    <EditText
+        android:id="@+id/editTDUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/border_set"
+        android:ems="10"
+        android:hint="Usuario"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="1dp" />
     <EditText
         android:id="@+id/editTTextPassRegUsuario"
-        android:layout_width="391dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/border_set"
@@ -101,9 +113,9 @@
 
     <EditText
         android:id="@+id/editTTextPassRegUsuarioConf"
-        android:layout_width="392dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="22dp"
         android:background="@drawable/border_set"
         android:ems="10"
         android:hint=" Ingrese su contraseña de nuevo"
@@ -122,8 +134,8 @@
         android:buttonTint="#F44336"
         android:text="He leido y acepto las politicas de privacidad"
         tools:ignore="MissingConstraints"
-        android:layout_marginBottom="46dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="50dp"
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="532dp" />
 
@@ -133,6 +145,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/red"
+        android:onClick="RegistrarDataUser"
         android:text="Aceptar" />
 
 
