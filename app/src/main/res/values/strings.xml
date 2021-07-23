@@ -23,4 +23,30 @@
     //Maps
     <string name="marker_detail_lating">(%1$.2f,%2$.2f)</string>
     //
+    //Correo
+    <string name="subject">Asunto</string>
+    <string name="to">Para</string>
+    <string name="message">Mensaje</string>
+    <string name="send">Enviar</string>
+    <string name="sending_mail">Enviando Correo</string>
+    <string name="mail_sent">Correo Enviado</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="compose">Escribir Correo</string>
+    <string name="field_is_required">Campo es requerido</string>
+    <string name="warning_message">Se debe utilizar una cuenta de Google y esta debe tener Activado el acceso desde Apps menos seguras</string>
+    <string name="sender_data_title">Datos del remitente</string>
+    //Confirmar
+    <string name="tv_c_bienvenido">Bienvenido a Kacharpo</string>
+    <string name="tv_c_codigo">Ingresa el codigo de activacion que mandamos a su email</string>
+    <string name="tv_c_intentos">Numero de intentos restantes: </string>
+    <string name="tv_c_recibir">Da click en el boton reenviar si aun no recibes el correo con el codigo de activacion</string>
+    <string name="btn_c_reenviar">Reenviar</string>
+    <string name="txt_c_codigo">Codigo de confirmacion</string>
+    //TabLayout
+    <string name="ti_inicio">Inicio</string>
+    <string name="ti_final">Final</string>
+    <string name="ti_tiempo">Tiempo</string>
+    <string name="ti_conductor">Conductor</string>
+    <string name="ti_disponibilidad">Disponibilidad</string>
 </resources>

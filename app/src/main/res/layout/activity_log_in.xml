@@ -16,32 +16,50 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_500" />
 
-    <EditText
-        android:id="@+id/txt_usr"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_usr_l"
         android:layout_width="355dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Usuario"
-        android:inputType="textPersonName"
-        android:background="@drawable/border_set"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_usr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:background="@drawable/border_set"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/txt_pass"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_pass_l"
         android:layout_width="355dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:background="@drawable/border_set"
+
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_usr" />
+
+        app:layout_constraintTop_toBottomOf="@+id/txt_usr_l"
+        app:endIconMode="password_toggle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_set"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btn_ingresar"
@@ -53,7 +71,7 @@
         android:onClick="InicioSesion"
         android:text="Ingresar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_pass_l" />
 
     <Button
         android:id="@+id/btn_registro"
@@ -66,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.66"
         app:layout_constraintStart_toEndOf="@+id/btn_ingresar"
-        app:layout_constraintTop_toBottomOf="@+id/txt_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_pass_l" />
 
     <TextView
         android:id="@+id/textView"

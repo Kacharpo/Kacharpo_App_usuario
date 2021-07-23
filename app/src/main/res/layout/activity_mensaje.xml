@@ -10,7 +10,7 @@
         android:id="@+id/txa_mensaje"
         android:layout_width="323dp"
         android:layout_height="598dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="136dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Mensaje"
