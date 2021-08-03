@@ -49,4 +49,6 @@
     <string name="ti_tiempo">Tiempo</string>
     <string name="ti_conductor">Conductor</string>
     <string name="ti_disponibilidad">Disponibilidad</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
