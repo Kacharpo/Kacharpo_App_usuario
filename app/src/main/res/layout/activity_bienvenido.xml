@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".BienvenidoActivity">
 
-    <TextView
-         android:layout_height="wrap_content"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:text="¡Bienvenido!"
-        android:textSize="20sp"
-        android:textAlignment="center"/>
-    <!-- viewpager to show images -->
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPagerMain"
-        android:layout_width="match_parent"
-        android:layout_height="530dp" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/Enviar"
+        <androidx.viewpager.widget.ViewPager
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:background="@drawable/botton_redondo"
-        android:onClick="avanzarLogin"
-        android:text="Iniciar Sesion"
- />
-</LinearLayout>
+        android:layout_height="match_parent" />
+        <LinearLayout
+            android:id="@+id/idLinearPuntos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="592dp"
+            android:layout_marginLeft="320dp"
+            android:padding="20dp">
+        </LinearLayout>
+
+    </RelativeLayout>
+    <!-- viewpager to show images -->
+
+
+
+</RelativeLayout>

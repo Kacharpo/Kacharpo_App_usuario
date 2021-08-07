@@ -14,4 +14,6 @@
     <color name="principal_oscuro">#A61010</color>
     <color name="secundario">#FFC107</color>
     <color name="secundario_oscuro">#C59401</color>
+    <color name="colorBlancoTransparente">#CCCCCC</color>
+    <color name="colorBlanco">#FFFFFF</color>
 </resources>
