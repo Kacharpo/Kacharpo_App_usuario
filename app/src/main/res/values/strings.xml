@@ -20,6 +20,7 @@
     <string name="tv_c_conductortxt">Conductor</string>
     <string name="tv_c_disponibilidadtxt">Disponibilidad</string>
     <string name="tv_c_rutas">Rutas</string>
+    <string name="txt_c_destino">Destino</string>
     //Maps
     <string name="marker_detail_lating">(%1$.2f,%2$.2f)</string>
     //
