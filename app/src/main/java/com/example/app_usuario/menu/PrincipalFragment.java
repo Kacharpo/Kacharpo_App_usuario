@@ -1,14 +1,16 @@
-package com.example.app_usuario;
+package com.example.app_usuario.menu;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +30,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -44,7 +45,11 @@ import com.example.app_usuario.Alertas.AlertaMensaje;
 import com.example.app_usuario.Alertas.AlertaServicio;
 import com.example.app_usuario.Alertas.AlertaTarjeta;
 import com.example.app_usuario.Alertas.AlertaTrafico;
+import com.example.app_usuario.Blank;
 import com.example.app_usuario.Controlador.PagerController;
+import com.example.app_usuario.Fragmento;
+import com.example.app_usuario.Principal;
+import com.example.app_usuario.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -63,7 +68,45 @@ import java.util.Locale;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class Principal extends AppCompatActivity implements OnMapReadyCallback ,GoogleMap.OnMarkerClickListener,GoogleMap.OnMarkerDragListener, GoogleMap.OnInfoWindowClickListener  {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link PrincipalFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,GoogleMap.OnMarkerClickListener,GoogleMap.OnMarkerDragListener, GoogleMap.OnInfoWindowClickListener  {
+    //Matriz de lugares para AutoCompliteText
+    private static final String[] COUNTRIES = new String[]{
+            "Acambay de Ruíz Castañeda","Acolman","Aculco","Almoloya de Alquisiras","Almoloya de Juárez","Almoloya del Río","Amanalco","Amatepec",
+            "Amecameca","Apaxco","Atenco","Atizapán","Atizapán de Zaragoza","Atlacomulco","Atlautla","Axapusco","Ayapango","Calimaya","Capulhuac",
+            "Coacalco de Berriozábal","Coatepec Harinas","Cocotitlán","Coyotepec","Cuautitlán","Chalco","Chapa de Mota","Chapultepec","Chiautla",
+            "Chicoloapan","Chiconcuac","Chimalhuacán", "Donato Guerra","Ecatepec de Morelos","Ecatzingo","Huehuetoca","Hueypoxtla","Huixquilucan",
+            "Isidro Fabela","Ixtapaluca","Ixtapan de la Sal","Ixtapan del Oro","Ixtlahuaca","Xalatlaco","Jaltenco","Jilotepec","Jilotzingo","Jiquipilco",
+            "Jocotitlán","Joquicingo","Juchitepec","Lerma","Malinalco","Melchor Ocampo","Metepec","Mexicaltzingo","Morelos","Naucalpan de Juárez",
+            "Nezahualcóyotl","Nextlalpan","Nicolás Romero","Nopaltepec","Ocoyoacac","Ocuilan","El Oro","Otumba","Otzoloapan","Otzolotepec","Ozumba",
+            "Papalotla","La Paz","Polotitlán","Rayón","San Antonio la Isla", "San Felipe del Progreso","San Martín de las Pirámides","San Mateo Atenco",
+            "San Simón de Guerrero","Santo Tomás","Soyaniquilpan de Juárez","Sultepec","Tecámac","Tejupilco","Temamatla","Temascalapa","Temascalcingo",
+            "Temascaltepec","Temoaya","Tenancingo","Tenango del Aire", "Tenango del Valle","Teoloyucan","Teotihuacán","Tepetlaoxtoc","Tepetlixpa",
+            "Tepotzotlán","Tequixquiac","Texcaltitlán","Texcalyacac","Texcoco","Tezoyuca","Tianguistenco","Timilpan","Tlalmanalco","Tlalnepantla de Baz",
+            "Tlatlaya","Toluca","Tonatico","Tultepec","Tultitlán","Valle de Bravo","Villa de Allende","Villa del Carbón","Villa Guerrero","Villa Victoria",
+            "Xonacatlán","Zacazonapan","Zacualpan","Zinacantepec","Zumpahuacán", "Zumpango","Cuautitlán Izcalli","Valle de Chalco Solidaridad","Luvianos",
+            "San José del Rincón","Tonanitla","Aurrera Express","Hospital Americas"
+    };
+    private static final double[][] COR = new double[][]{
+            {19.9543,-99.8441},{19.6395,-98.9121},{20.09833,-99.8269},{18.8657,-99.894},{19.369,-99.7605},{ 19.1586, -99.4886},{ 19.25,-100.017},{18.6807,-100.181},
+            {19.1224, -98.7667},{19.9833,-99.1667},{19.2703,-99.5331},{19.431,-99.4025},{19.5562,-99.2675},{19.7968,-99.8765},{19.0206,-98.7783},{19.7233,-98.758},{19.1261,-98.8039},{19.1618,-99.6129},{19.1822,-99.4565},
+            {19.62923,-99.10689},{18.9236,-99.7686},{19.2312,-98.864},{19.7764,-99.2082},{19.67241,-99.17615},{19.26174,-98.89775},{19.84754,-99.47325},{19.2003,-99.5603},{19.5494,-98.8828},
+            {19.4126,-98.9027},{19.5586,-98.8958},{ 19.4208,-98.949},{19.34937,-100.19412},{19.6097,-99.06},{18.95,-98.75},{19.8342,-99.2033},{19.9106,-99.0755},{ 19.3619,-99.3505},
+            {19.5555,-99.4179},{19.31693,-98.89458},{18.8438,-99.6755},{19.2718,-100.268},{19.5689,-99.7669},{19.1796,-99.416},{19.751,-99.0941},{19.9521,-99.5286},{19.8699,-99.0567},{19.5572,-99.6075},
+            {19.7549,-99.9165},{19.0726,-99.5111},{19.0911,-98.8816},{19.2864,-99.511},{18.9446,-99.4954},{18.9446,-99.4954},{ 19.2564,-99.6048},{19.2095,-99.5854},{19.7846,-99.6709},{19.475,-99.2374},
+            {19.4116,-99.0212},{19.717,-99.067},{19.6198,-99.3114},{19.7758,-98.7123},{19.2727,-99.4597},{18.9665,-99.4138},{19.8028,-100.138},{19.6985,-98.7539},{19.1169,-100.295},{19.4203,-99.5593},{19.0392,-98.7936},
+            {19.5622,-98.8578},{ 19.3606,-98.98},{20.2228,-99.8156},{19.146,-99.5819},{ 19.1626,-99.5665},{19.58154,-100.02269},{19.7058,-98.8375},{19.2703,-99.5331},
+            {19.0216,-100.007},{18.8441,-100.018},{20.0154,-99.5288},{18.4878,-100.15},{ 19.7131,-98.9683},{18.9075,-100.151},{19.2028,-98.87},{ 19.8314,-98.8997},{19.9147,-100.004},
+            {19.0444,-100.045},{19.4654,-99.594},{18.95954,-99.59239},{19.1576,-98.8599},{19.0985,-99.5904},{19.7442,-99.1811},{19.6897,-98.8608},{19.5724,-98.8192},{19.0247,-98.8199},
+            {19.70618,-99.23913},{19.908,-99.1457},{18.9285,-99.9356},{19.1316,-99.5003},{19.5126,-98.8798},{19.5914,-98.9131},{19.1125,-99.4346},{19.867,-99.733},{19.2044,-98.8025},{19.539,-99.1933},
+            {18.6158,-100.208},{19.2879,-99.6468},{18.8028,-99.67},{19.685,-99.1281},{19.6456,-99.1689},{19.1925,-100.131},{19.3736,-100.147},{19.72234,-99.46158},{18.96,-99.64},{19.4337,-99.9956},
+            {19.4,-99.533},{19.0728,-100.255},{18.7836,-98.7594},{19.2833, -99.7333},{18.8346,-99.581},{19.7971,-99.0989},{19.64388,-99.21598},{19.2917,-98.9389},{18.9167,-100.4},
+            {19.6115,-100.124},{19.6886,-99.053},{19.586990,-98.9984},{19.5929,-99.018375}
+    };
 
     private Button btn_alerta,btn_atras;
     private AutoCompleteTextView at_ubicacion, at_destino;
@@ -106,43 +149,88 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
     private Fragment fragmentAlerta,fragmentBlank,fragmentBlank1;
     private boolean f = false;
     private boolean fa = false;
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public PrincipalFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment PrincipalFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static PrincipalFragment newInstance(String param1, String param2) {
+        PrincipalFragment fragment = new PrincipalFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_principal);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
 
-        at_ubicacion = (AutoCompleteTextView)findViewById(R.id.atxt_c_ubicacion);
-        at_destino = (AutoCompleteTextView)findViewById(R.id.atxt_c_destino);
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_principal,container,false);
 
-        tv_ficha = (TextView)findViewById(R.id.tv_c_ficha);
+        at_ubicacion = (AutoCompleteTextView)v.findViewById(R.id.atxt_c_ubicacion);
+        at_destino = (AutoCompleteTextView)v.findViewById(R.id.atxt_c_destino);
+
+        tv_ficha = (TextView)v.findViewById(R.id.tv_c_ficha);
         //lv_rutas = (ListView)findViewById(R.id.lv_c_rutas);
-        vp_mostrar = (ViewPager)findViewById(R.id.vp_c_mostrar);
-        tl_opcion = (TabLayout)findViewById(R.id.tl_v_opcion);
-        ti_inicio = (TabItem)findViewById(R.id.ti_c_inicio);
-        ti_final = (TabItem)findViewById(R.id.ti_c_final);
-        ti_tiempo = (TabItem)findViewById(R.id.ti_c_tiempo);
-        ti_conductor = (TabItem)findViewById(R.id.ti_c_conductor);
-        ti_disponibilidad = (TabItem)findViewById(R.id.ti_c_disponibilidad);
-        sp_rutas = (Spinner)findViewById(R.id.sp_c_rutas);
-        btn_alerta = (Button)findViewById(R.id.btn_c_alerta);
-        btn_atras = (Button)findViewById(R.id.btn_c_atras);
+        vp_mostrar = (ViewPager)v.findViewById(R.id.vp_c_mostrar);
+        tl_opcion = (TabLayout)v.findViewById(R.id.tl_v_opcion);
+        ti_inicio = (TabItem)v.findViewById(R.id.ti_c_inicio);
+        ti_final = (TabItem)v.findViewById(R.id.ti_c_final);
+        ti_tiempo = (TabItem)v.findViewById(R.id.ti_c_tiempo);
+        ti_conductor = (TabItem)v.findViewById(R.id.ti_c_conductor);
+        ti_disponibilidad = (TabItem)v.findViewById(R.id.ti_c_disponibilidad);
+        sp_rutas = (Spinner)v.findViewById(R.id.sp_c_rutas);
+        btn_alerta = (Button)v.findViewById(R.id.btn_c_alerta);
+        btn_atras = (Button)v.findViewById(R.id.btn_c_atras);
         //Array para spinner
         String [] tipo = {"Rutas","Euroban", "Urban", "Combi"};
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tipo);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipo);
         sp_rutas.setAdapter(adapter1);
-        //Array para AutoCompliteText
-        final ArrayAdapter<String > adapter2 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,COUNTRIES);
+
+        final ArrayAdapter<String > adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,COUNTRIES);
         at_ubicacion.setAdapter(adapter2);
         at_destino.setAdapter(adapter2);
         //PagerController para Fragment
-        pagerAdapter = new PagerController(getSupportFragmentManager(),tl_opcion.getTabCount());
+        pagerAdapter = new PagerController(getFragmentManager(),tl_opcion.getTabCount());
         vp_mostrar.setAdapter(pagerAdapter);
         tl_opcion.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 vp_mostrar.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()){
+                    case 0:
+                        vp_mostrar.setVisibility(View.INVISIBLE);
+                        break;
                     default:
+                        vp_mostrar.setVisibility(View.VISIBLE);
                         pagerAdapter.notifyDataSetChanged();
                 }
             }
@@ -169,19 +257,17 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
         // img_conductor = (ImageView)findViewById(R.id.img_c_conductor);
 
         //SupportMapFragment para uso de GoogleMaps
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
-        card1 = (CardView)findViewById(R.id.cv_c);
-        card2 = (CardView)findViewById(R.id.cv_c1);
-        card3 = (CardView)findViewById(R.id.cv_c2);
-        card4 = (CardView)findViewById(R.id.cv_c3);
-        card5 = (CardView)findViewById(R.id.cv_c4);
-        card6 = (CardView)findViewById(R.id.cv_c5);
-        card7 = (CardView)findViewById(R.id.cv_c6);
-        card8 = (CardView)findViewById(R.id.cv_c7);
-        tv_alerta = (TextView)findViewById(R.id.textVAlerta);
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        supportMapFragment.getMapAsync(this);
+        card1 = (CardView)v.findViewById(R.id.cv_c);
+        card2 = (CardView)v.findViewById(R.id.cv_c1);
+        card3 = (CardView)v.findViewById(R.id.cv_c2);
+        card4 = (CardView)v.findViewById(R.id.cv_c3);
+        card5 = (CardView)v.findViewById(R.id.cv_c4);
+        card6 = (CardView)v.findViewById(R.id.cv_c5);
+        card7 = (CardView)v.findViewById(R.id.cv_c6);
+        card8 = (CardView)v.findViewById(R.id.cv_c7);
+        tv_alerta = (TextView)v.findViewById(R.id.textVAlerta);
 
         fragmentAlerta = new Alerta();
         fragmentBlank = new Blank();
@@ -199,7 +285,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                     card7.setVisibility(View.VISIBLE);
                     card8.setVisibility(View.VISIBLE);
                     tv_alerta.setVisibility(View.VISIBLE);
-                    transaction = getSupportFragmentManager().beginTransaction().add(R.id.fm_c_fondo,fragmentAlerta);
+                    transaction = getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fm_c_fondo,fragmentAlerta);
                     f = true;
                     // init();
                 }else if(f==true){
@@ -212,12 +298,12 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                     card7.setVisibility(View.INVISIBLE);
                     card8.setVisibility(View.INVISIBLE);
                     tv_alerta.setVisibility(View.INVISIBLE);
-                    transaction=getSupportFragmentManager().beginTransaction();
+                    transaction=getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fm_c_fondo,fragmentBlank);
                     f = false;
                     if(fa==true){
                         btn_atras.setVisibility(View.INVISIBLE);
-                        transaction1=getSupportFragmentManager().beginTransaction();
+                        transaction1=getActivity().getSupportFragmentManager().beginTransaction();
                         transaction1.replace(R.id.fm_c_alerta,fragmentBlank1);
                         transaction1.commit();
                         fa=false;
@@ -249,7 +335,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentMensaje);
                 transaction1.commit();
                 fa=true;
@@ -268,7 +354,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentInundacion);
                 transaction1.commit();
                 fa=true;
@@ -287,7 +373,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentServicio);
                 transaction1.commit();
                 fa=true;
@@ -306,7 +392,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 btn_atras.setVisibility(View.VISIBLE);
                 card8.setVisibility(View.INVISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentTarjeta);
                 transaction1.commit();
                 fa=true;
@@ -325,7 +411,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentAsaltante);
                 transaction1.commit();
                 fa=true;
@@ -344,7 +430,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentTrafico);
                 transaction1.commit();
                 fa=true;
@@ -363,7 +449,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentDisponibilidad);
                 transaction1.commit();
                 fa=true;
@@ -382,7 +468,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.INVISIBLE);
                 btn_atras.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.INVISIBLE);
-                transaction1 = getSupportFragmentManager().beginTransaction();
+                transaction1 = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentAsistencia);
                 transaction1.commit();
                 fa=true;
@@ -402,12 +488,16 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 card8.setVisibility(View.VISIBLE);
                 tv_alerta.setVisibility(View.VISIBLE);
                 btn_atras.setVisibility(View.INVISIBLE);
-                transaction1=getSupportFragmentManager().beginTransaction();
+                transaction1=getActivity().getSupportFragmentManager().beginTransaction();
                 transaction1.replace(R.id.fm_c_alerta,fragmentBlank1);
                 transaction1.commit();
                 fa=false;
             }
         });
+
+
+
+        return v;
     }
 
     //List<ListElement> elements;
@@ -421,24 +511,23 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(listAdapter);*/
     }
-    //Configuracion de Google Maps
     @Override
-    public void onMapReady(final GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap) {
         //Asigna valor a variable mMap de tipo GoogleMap
         mMap = googleMap;
         //Permiso de localizacion
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
         //Intent para cambio de Activity
-        Intent refresh = new Intent(getApplicationContext(),Principal.class);
+        Intent refresh = new Intent(getActivity().getApplicationContext(), Principal.class);
         //Checar y pedir permiso
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getApplicationContext(), "Permiso de ubicacion accedido", LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Permiso de ubicacion accedido", LENGTH_SHORT).show();
         }else {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
             try {
                 for(int e=0;e<=20;e++){
                     Thread.sleep(500);
-                    permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+                    permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
                     if(permissionCheck == PackageManager.PERMISSION_GRANTED){
                         startActivity(refresh);
                     }
@@ -449,7 +538,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
             return ;
         }
         //LocationManager para utilizar localizacion
-        LocationManager locationManager = (LocationManager) Principal.this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         Location loc = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         //Agregar marcador si la ubcacion esta desactivada
         if(!mMap.isMyLocationEnabled()){
@@ -459,7 +548,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(CDMX));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(TiempoReal,18),5000,null);
             UbiA = true;
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
             List<Address> list;
             try {
@@ -483,7 +572,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
             markerPerso = googleMap.addMarker(marker1);
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(ubi));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(TiempoReal,18),5000,null);
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
             List<Address> list;
             try {
@@ -508,7 +597,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                     TiempoReal= new LatLng(location.getLatitude(), location.getLongitude() );
                     markerPerso = googleMap.addMarker(new MarkerOptions().position(TiempoReal).draggable(true).title("Punto de Inicio"));
                     //mMap.moveCamera(CameraUpdateFactory.newLatLng(TiempoReal));
-                    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                    Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
                     List<Address> list;
                     try {
                         list = geocoder.getFromLocation(
@@ -544,13 +633,13 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
 
             @Override
             public void onProviderEnabled(String provider) {
-                Toast.makeText(Principal.this,"GPS Activado", LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"GPS Activado", LENGTH_SHORT).show();
                 UbiAct = true;
             }
 
             @Override
             public void onProviderDisabled(String provider) {
-                Toast.makeText(Principal.this,"GPS Desactivado", LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"GPS Desactivado", LENGTH_SHORT).show();
             }
         } ;
         //Sobreescribir funcion setOnClicklistener para AutoCompleteText Ubicacion
@@ -560,7 +649,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                 mMap.clear();
 
                 double lat=0.0,lon=0.0;
-                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
 
                 List<Address> list = null;
                 int j=0;
@@ -660,7 +749,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                                 }
                             }
                             if (c<=1 && d<=1) {
-                                Toast.makeText(getApplicationContext(), "Buscando", LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Buscando", LENGTH_SHORT).show();
 
                                 double latD = Double.parseDouble(lat), lonD = Double.parseDouble(lon);
                                 if(latD>0)latD=+latD;
@@ -685,7 +774,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                                     markerPerso = googleMap.addMarker(new MarkerOptions().position(Ingresada).draggable(true).title("Marcador de tu Ubicacion"));
                                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Ingresada,18),5000,null);
 
-                                    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                                    Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
                                     List<Address> list = null;
                                     try {
                                         list = geocoder.getFromLocation(latD, lonD, 1);
@@ -699,7 +788,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                                         e.printStackTrace();
                                     }
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "Coordenadas invalidas", LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity().getApplicationContext(), "Coordenadas invalidas", LENGTH_SHORT).show();
                                 }
 
                             }
@@ -721,7 +810,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mMap.clear();
                 double lat=0.0,lon=0.0;
-                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
 
                 List<Address> list = null;
                 int j=0;
@@ -818,7 +907,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                                 }
                             }
                             if (c<=1 && d<=1) {
-                                Toast.makeText(getApplicationContext(), "Buscando", LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getApplicationContext(), "Buscando", LENGTH_SHORT).show();
 
                                 double latD = Double.parseDouble(lat), lonD = Double.parseDouble(lon);
                                 if(latD>0)latD=+latD;
@@ -840,7 +929,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
 
                                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Ingresada,18),5000,null);
 
-                                    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                                    Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
                                     List<Address> list = null;
                                     try {
                                         list = geocoder.getFromLocation(latD, lonD, 1);
@@ -854,7 +943,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
                                         e.printStackTrace();
                                     }
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "Coordenadas invalidas", LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity().getApplicationContext(), "Coordenadas invalidas", LENGTH_SHORT).show();
                                 }
 
                             }
@@ -873,9 +962,9 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
         //Actualizar ubicacion en tiempo real con uso de Internet
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
         //Configuracion de interfaz del Google Maps
-        googleMap.setOnMarkerClickListener(this);
-        googleMap.setOnMarkerDragListener(this);
-        googleMap.setOnInfoWindowClickListener(this);
+        googleMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) this);
+        googleMap.setOnMarkerDragListener((GoogleMap.OnMarkerDragListener) this);
+        googleMap.setOnInfoWindowClickListener((GoogleMap.OnInfoWindowClickListener) this);
         mMap.setMyLocationEnabled(true);
         // mMap.getUiSettings().setZoomControlsEnabled(true);
     }
@@ -883,21 +972,21 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
     @Override
     public void onInfoWindowClick(Marker marker) {
         if(marker.equals(markerPerso)){
-            Fragmento.newInstance(marker.getTitle(),info).show(getSupportFragmentManager(), null);
+            Fragmento.newInstance(marker.getTitle(),info).show(getActivity().getSupportFragmentManager(), null);
         }
         if(marker.equals(markerPerso2)){
 
-            Fragmento.newInstance(marker.getTitle(),info2).show(getSupportFragmentManager(), null);
+            Fragmento.newInstance(marker.getTitle(),info2).show(getActivity().getSupportFragmentManager(), null);
         }
     }
     //Mostrar mensaje al dar click en marcador
     @Override
     public boolean onMarkerClick(Marker marker) {
         if(marker.equals(markerPerso)){
-            Toast.makeText(this,"Manten apretado para mover ubicacion",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Manten apretado para mover ubicacion",Toast.LENGTH_LONG).show();
         }
         if(marker.equals(markerPerso2)){
-            Toast.makeText(this,"Manten apretado para mover ubicacion",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Manten apretado para mover ubicacion",Toast.LENGTH_LONG).show();
         }
         return false;
     }
@@ -910,9 +999,9 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
     @Override
     public void onMarkerDrag(Marker marker) {
         if(marker.equals(markerPerso)){
-            Toast.makeText(this,"Posicion", LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Posicion", LENGTH_SHORT).show();
             String newTitle = String.format(Locale.getDefault(), getString(R.string.marker_detail_lating), marker.getPosition().latitude, marker.getPosition().longitude);
-            setTitle(newTitle);
+            marker.setTitle(newTitle);
             markerPerso.setTitle("Punto de Inicio");
             TiempoReal= new LatLng(markerPerso.getPosition().latitude, markerPerso.getPosition().longitude );
             mMap.moveCamera(CameraUpdateFactory.newLatLng(TiempoReal));
@@ -923,9 +1012,9 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
             }
         }
         if(marker.equals(markerPerso2)){
-            Toast.makeText(this,"Posicion", LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Posicion", LENGTH_SHORT).show();
             String newTitle = String.format(Locale.getDefault(), getString(R.string.marker_detail_lating), marker.getPosition().latitude, marker.getPosition().longitude);
-            setTitle(newTitle);
+            marker.setTitle(newTitle);
             markerPerso2.setTitle("Punto de Destino");
             TiempoReal2= new LatLng(markerPerso2.getPosition().latitude, markerPerso2.getPosition().longitude );
             mMap.moveCamera(CameraUpdateFactory.newLatLng(TiempoReal2));
@@ -940,9 +1029,9 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
     @Override
     public void onMarkerDragEnd(Marker marker) {
         if(marker.equals(markerPerso)){
-            setTitle(R.string.app_name);
+            marker.setTitle(String.valueOf(R.string.app_name));
             if(markerPerso.getPosition().longitude !=0.0 && markerPerso.getPosition().latitude !=0.0) {
-                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
                 List<Address> list;
                 try {
@@ -966,9 +1055,9 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
 
         }
         if(marker.equals(markerPerso2)){
-            setTitle(R.string.app_name);
+            marker.setTitle(String.valueOf(R.string.app_name));
             if(markerPerso2.getPosition().longitude !=0.0 && markerPerso2.getPosition().latitude !=0.0) {
-                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
 
                 List<Address> list;
                 try {
@@ -992,42 +1081,4 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
 
         }
     }
-    //Matriz de lugares para AutoCompliteText
-    private static final String[] COUNTRIES = new String[]{
-            "Acambay de Ruíz Castañeda","Acolman","Aculco","Almoloya de Alquisiras","Almoloya de Juárez","Almoloya del Río","Amanalco","Amatepec",
-            "Amecameca","Apaxco","Atenco","Atizapán","Atizapán de Zaragoza","Atlacomulco","Atlautla","Axapusco","Ayapango","Calimaya","Capulhuac",
-            "Coacalco de Berriozábal","Coatepec Harinas","Cocotitlán","Coyotepec","Cuautitlán","Chalco","Chapa de Mota","Chapultepec","Chiautla",
-            "Chicoloapan","Chiconcuac","Chimalhuacán", "Donato Guerra","Ecatepec de Morelos","Ecatzingo","Huehuetoca","Hueypoxtla","Huixquilucan",
-            "Isidro Fabela","Ixtapaluca","Ixtapan de la Sal","Ixtapan del Oro","Ixtlahuaca","Xalatlaco","Jaltenco","Jilotepec","Jilotzingo","Jiquipilco",
-            "Jocotitlán","Joquicingo","Juchitepec","Lerma","Malinalco","Melchor Ocampo","Metepec","Mexicaltzingo","Morelos","Naucalpan de Juárez",
-            "Nezahualcóyotl","Nextlalpan","Nicolás Romero","Nopaltepec","Ocoyoacac","Ocuilan","El Oro","Otumba","Otzoloapan","Otzolotepec","Ozumba",
-            "Papalotla","La Paz","Polotitlán","Rayón","San Antonio la Isla", "San Felipe del Progreso","San Martín de las Pirámides","San Mateo Atenco",
-            "San Simón de Guerrero","Santo Tomás","Soyaniquilpan de Juárez","Sultepec","Tecámac","Tejupilco","Temamatla","Temascalapa","Temascalcingo",
-            "Temascaltepec","Temoaya","Tenancingo","Tenango del Aire", "Tenango del Valle","Teoloyucan","Teotihuacán","Tepetlaoxtoc","Tepetlixpa",
-            "Tepotzotlán","Tequixquiac","Texcaltitlán","Texcalyacac","Texcoco","Tezoyuca","Tianguistenco","Timilpan","Tlalmanalco","Tlalnepantla de Baz",
-            "Tlatlaya","Toluca","Tonatico","Tultepec","Tultitlán","Valle de Bravo","Villa de Allende","Villa del Carbón","Villa Guerrero","Villa Victoria",
-            "Xonacatlán","Zacazonapan","Zacualpan","Zinacantepec","Zumpahuacán", "Zumpango","Cuautitlán Izcalli","Valle de Chalco Solidaridad","Luvianos",
-            "San José del Rincón","Tonanitla","Aurrera Express","Hospital Americas"
-    };
-    //Matriz de coordenadas de lugares para AutoCompliteText
-    private static final double[][] COR = new double[][]{
-            {19.9543,-99.8441},{19.6395,-98.9121},{20.09833,-99.8269},{18.8657,-99.894},{19.369,-99.7605},{ 19.1586, -99.4886},{ 19.25,-100.017},{18.6807,-100.181},
-            {19.1224, -98.7667},{19.9833,-99.1667},{19.2703,-99.5331},{19.431,-99.4025},{19.5562,-99.2675},{19.7968,-99.8765},{19.0206,-98.7783},{19.7233,-98.758},{19.1261,-98.8039},{19.1618,-99.6129},{19.1822,-99.4565},
-            {19.62923,-99.10689},{18.9236,-99.7686},{19.2312,-98.864},{19.7764,-99.2082},{19.67241,-99.17615},{19.26174,-98.89775},{19.84754,-99.47325},{19.2003,-99.5603},{19.5494,-98.8828},
-            {19.4126,-98.9027},{19.5586,-98.8958},{ 19.4208,-98.949},{19.34937,-100.19412},{19.6097,-99.06},{18.95,-98.75},{19.8342,-99.2033},{19.9106,-99.0755},{ 19.3619,-99.3505},
-            {19.5555,-99.4179},{19.31693,-98.89458},{18.8438,-99.6755},{19.2718,-100.268},{19.5689,-99.7669},{19.1796,-99.416},{19.751,-99.0941},{19.9521,-99.5286},{19.8699,-99.0567},{19.5572,-99.6075},
-            {19.7549,-99.9165},{19.0726,-99.5111},{19.0911,-98.8816},{19.2864,-99.511},{18.9446,-99.4954},{18.9446,-99.4954},{ 19.2564,-99.6048},{19.2095,-99.5854},{19.7846,-99.6709},{19.475,-99.2374},
-            {19.4116,-99.0212},{19.717,-99.067},{19.6198,-99.3114},{19.7758,-98.7123},{19.2727,-99.4597},{18.9665,-99.4138},{19.8028,-100.138},{19.6985,-98.7539},{19.1169,-100.295},{19.4203,-99.5593},{19.0392,-98.7936},
-            {19.5622,-98.8578},{ 19.3606,-98.98},{20.2228,-99.8156},{19.146,-99.5819},{ 19.1626,-99.5665},{19.58154,-100.02269},{19.7058,-98.8375},{19.2703,-99.5331},
-            {19.0216,-100.007},{18.8441,-100.018},{20.0154,-99.5288},{18.4878,-100.15},{ 19.7131,-98.9683},{18.9075,-100.151},{19.2028,-98.87},{ 19.8314,-98.8997},{19.9147,-100.004},
-            {19.0444,-100.045},{19.4654,-99.594},{18.95954,-99.59239},{19.1576,-98.8599},{19.0985,-99.5904},{19.7442,-99.1811},{19.6897,-98.8608},{19.5724,-98.8192},{19.0247,-98.8199},
-            {19.70618,-99.23913},{19.908,-99.1457},{18.9285,-99.9356},{19.1316,-99.5003},{19.5126,-98.8798},{19.5914,-98.9131},{19.1125,-99.4346},{19.867,-99.733},{19.2044,-98.8025},{19.539,-99.1933},
-            {18.6158,-100.208},{19.2879,-99.6468},{18.8028,-99.67},{19.685,-99.1281},{19.6456,-99.1689},{19.1925,-100.131},{19.3736,-100.147},{19.72234,-99.46158},{18.96,-99.64},{19.4337,-99.9956},
-            {19.4,-99.533},{19.0728,-100.255},{18.7836,-98.7594},{19.2833, -99.7333},{18.8346,-99.581},{19.7971,-99.0989},{19.64388,-99.21598},{19.2917,-98.9389},{18.9167,-100.4},
-            {19.6115,-100.124},{19.6886,-99.053},{19.586990,-98.9984},{19.5929,-99.018375}
-    };
-
-
 }
-
-

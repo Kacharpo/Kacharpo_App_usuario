@@ -10,8 +10,9 @@
         android:id="@+id/imageView"
         android:layout_width="267dp"
         android:layout_height="212dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_500" />
@@ -34,7 +35,6 @@
             android:background="@drawable/border_set"
             />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_pass_l"
@@ -60,13 +60,12 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <Button
         android:id="@+id/btn_ingresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/botton_redondo"
         android:onClick="InicioSesion"
         android:text="Ingresar"
@@ -79,29 +78,50 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:background="@drawable/botton_redondo"
-        android:text="Registrar"
         android:onClick="registrar"
+        android:text="Registrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.66"
         app:layout_constraintStart_toEndOf="@+id/btn_ingresar"
         app:layout_constraintTop_toBottomOf="@+id/txt_pass_l" />
 
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="355dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:drawableLeft="@drawable/ic_google"
+        android:onClick="Log_in_firebase"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="Inicia sesión con Google"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+
+        app:backgroundTint="@color/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_registro" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="52dp"
+        android:onClick="recuperar_contra"
         android:text="¿Olvidó su contraseña?"
-        android:onClick="recuperar_contraseña"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_registro" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="52dp"
         android:text="Version 1.0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

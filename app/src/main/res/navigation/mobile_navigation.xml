@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/principalFragment">
+
+    <fragment
+        android:id="@+id/principalFragment"
+        android:name="com.example.app_usuario.menu.PrincipalFragment"
+        android:label="Principal"
+        tools:layout="@layout/fragment_principal" />
+
+    <fragment
+        android:id="@+id/viajesFragment"
+        android:name="com.example.app_usuario.menu.MisviajesFragment"
+        android:label="Mis viajes"
+        tools:layout="@layout/fragment_misviajes" />
+
+    <fragment
+        android:id="@+id/configuracionFragment"
+        android:name="com.example.app_usuario.menu.ConfiguracionFragment"
+        android:label="Configuracion"
+        tools:layout="@layout/fragment_configuracion" />
+    <fragment
+        android:id="@+id/mensajeFragment"
+        android:name="com.example.app_usuario.menu.MensajeFragment"
+        android:label="Mensajes"
+        tools:layout="@layout/fragment_mensaje" />
+</navigation>

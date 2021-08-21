@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Alertas.AlertaDisponibilidad">
+
+    <TextView
+        android:id="@+id/tv_c_aasaltante"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Disponibilidad"
+        android:textColor="#EA6A25"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Alerta Disponibilidad"
+        android:textColor="#000000"
+        android:textSize="34sp" />
+
+</FrameLayout>

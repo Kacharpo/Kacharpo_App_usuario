@@ -11,12 +11,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_transparent"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_usuario">
-        <activity android:name=".BienvenidoActivity"></activity>
+        <activity
+            android:name=".PrincipalMenuActivity"
+            android:label="@string/title_activity_principal_menu"
+            android:theme="@style/Theme.App_usuario.NoActionBar"></activity>
+        <activity android:name=".BienvenidoActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -24,11 +28,11 @@
 
         <activity android:name=".DisponibilidadActivity" />
         <activity android:name=".AlertaActivity" />
-        <activity android:name=".Mensaje" />
         <activity android:name=".Log_in" />
-        <activity android:name=".Registro_conductor" />
         <activity android:name=".RegistroUsuario" />
-        <activity android:name=".Principal" />
+        <activity android:name=".Principal"
+                  android:label="@string/title_activity_principal_menu"
+                  android:theme="@style/Theme.App_usuario.NoActionBar"/>
         <activity android:name=".RecuperarContra" />
         <activity android:name=".Splash">
             <intent-filter>
