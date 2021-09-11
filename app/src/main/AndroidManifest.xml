@@ -25,11 +25,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDc-RTZCRzOWBS8r2v30SndwK9CzYv3Tew" />
-
+        <activity android:name=".ConfirmarCuenta" />
         <activity android:name=".DisponibilidadActivity" />
         <activity android:name=".AlertaActivity" />
         <activity android:name=".Log_in" />
-        <activity android:name=".RegistroUsuario" />
+        <activity android:name=".Registro.RegistroUsuario" />
         <activity android:name=".Principal"
                   android:label="@string/title_activity_principal_menu"
                   android:theme="@style/Theme.App_usuario.NoActionBar"/>

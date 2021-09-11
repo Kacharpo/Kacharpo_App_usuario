@@ -22,6 +22,7 @@
         android:name="com.example.app_usuario.menu.ConfiguracionFragment"
         android:label="Configuracion"
         tools:layout="@layout/fragment_configuracion" />
+
     <fragment
         android:id="@+id/mensajeFragment"
         android:name="com.example.app_usuario.menu.MensajeFragment"

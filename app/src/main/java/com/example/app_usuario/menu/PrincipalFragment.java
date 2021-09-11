@@ -195,7 +195,7 @@ public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,G
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_principal,container,false);
 
-        at_ubicacion = (AutoCompleteTextView)v.findViewById(R.id.atxt_c_ubicacion);
+        at_ubicacion = (AutoCompleteTextView)v.findViewById(R.id.atxt_ca_calle1);
         at_destino = (AutoCompleteTextView)v.findViewById(R.id.atxt_c_destino);
 
         tv_ficha = (TextView)v.findViewById(R.id.tv_c_ficha);
@@ -205,7 +205,6 @@ public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,G
         ti_inicio = (TabItem)v.findViewById(R.id.ti_c_inicio);
         ti_final = (TabItem)v.findViewById(R.id.ti_c_final);
         ti_tiempo = (TabItem)v.findViewById(R.id.ti_c_tiempo);
-        ti_conductor = (TabItem)v.findViewById(R.id.ti_c_conductor);
         ti_disponibilidad = (TabItem)v.findViewById(R.id.ti_c_disponibilidad);
         sp_rutas = (Spinner)v.findViewById(R.id.sp_c_rutas);
         btn_alerta = (Button)v.findViewById(R.id.btn_c_alerta);

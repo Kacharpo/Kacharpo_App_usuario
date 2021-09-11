@@ -5,10 +5,38 @@
     android:layout_height="match_parent"
     tools:context=".menu.ConfiguracionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Configuracion" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" >
+
+        <Button
+            android:id="@+id/buttonPerfil"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="397dp"
+            android:layout_height="match_parent"
+            android:text="Perfil                                                             >" />
+        <Button
+            android:id="@+id/buttonPrivacidad"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="397dp"
+            android:layout_height="match_parent"
+            android:text="Privacidad                                                     >" />
+        <Button
+            android:id="@+id/buttonAcercaDe"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="397dp"
+            android:layout_height="match_parent"
+            android:text="Acerca de                                                      >" />
+
+        <Button
+            android:id="@+id/buttonCerrarSesion"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="CERRAR SESION" />
+    </LinearLayout>
+
 
 </FrameLayout>
+

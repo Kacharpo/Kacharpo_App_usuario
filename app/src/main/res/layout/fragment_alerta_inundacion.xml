@@ -3,24 +3,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Alertas.AlertaInundacion">
 
-    <TextView
-        android:id="@+id/tv_c_aasaltante"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:text="Inundacion"
-        android:textColor="#EA6A25"
-        android:textSize="24sp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="Alerta Inundacion"
-        android:textColor="#000000"
-        android:textSize="34sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_ci_inundacion"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="Inundacion"
+                android:textColor="#EA6A25"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_ci_calles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Entre Calle 1 y Calle 2"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/atxt_ci_calle1_l"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF0101"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/tv_calle1">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/atxt_ci_calle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:completionThreshold="1"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textSize="24sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/atxt_ci_calle2_l"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF0101"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/tv_calle2">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/atxt_ci_calle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:completionThreshold="1"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:textSize="24sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/txt_ci_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="Descripcion"
+                android:inputType="textMultiLine"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/tv_ci_ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Obtener Ubicacion"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ci_ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_c_ubicacion"
+                app:cornerRadius="20dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ci_enviar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_c_enviar"
+                app:cornerRadius="20dp" />
+        </LinearLayout>
+    </ScrollView>
+
 
 </FrameLayout>

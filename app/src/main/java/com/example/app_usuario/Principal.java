@@ -111,7 +111,7 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_principal);
 
-        at_ubicacion = (AutoCompleteTextView)findViewById(R.id.atxt_c_ubicacion);
+        at_ubicacion = (AutoCompleteTextView)findViewById(R.id.atxt_ca_calle1);
         at_destino = (AutoCompleteTextView)findViewById(R.id.atxt_c_destino);
 
         tv_ficha = (TextView)findViewById(R.id.tv_c_ficha);
@@ -121,7 +121,6 @@ public class Principal extends AppCompatActivity implements OnMapReadyCallback ,
         ti_inicio = (TabItem)findViewById(R.id.ti_c_inicio);
         ti_final = (TabItem)findViewById(R.id.ti_c_final);
         ti_tiempo = (TabItem)findViewById(R.id.ti_c_tiempo);
-        ti_conductor = (TabItem)findViewById(R.id.ti_c_conductor);
         ti_disponibilidad = (TabItem)findViewById(R.id.ti_c_disponibilidad);
         sp_rutas = (Spinner)findViewById(R.id.sp_c_rutas);
         btn_alerta = (Button)findViewById(R.id.btn_c_alerta);

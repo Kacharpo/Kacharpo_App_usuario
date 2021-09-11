@@ -44,6 +44,12 @@
     <string name="tv_c_recibir">Da click en el boton reenviar si aun no recibes el correo con el codigo de activacion</string>
     <string name="btn_c_reenviar">Reenviar</string>
     <string name="txt_c_codigo">Codigo de confirmacion</string>
+    //Fragment
+    <string name="tv_alertas">Alertas</string>
+    <string name="tv_calle1">Calle 1</string>
+    <string name="tv_calle2">Calle 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
     //TabLayout
     <string name="ti_inicio">Inicio</string>
     <string name="ti_final">Final</string>
