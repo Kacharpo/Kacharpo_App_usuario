@@ -2,6 +2,7 @@ package com.example.app_usuario;
 
 import  androidx.appcompat.app.AppCompatActivity ;
 
+import android.content.Context;
 import  android.content.Intent ;
 import  android.database.Cursor ;
 import  android.database.sqlite.SQLiteDatabase ;
@@ -15,6 +16,7 @@ import  android.widget.Toast ;
 import androidx.annotation.NonNull;
 
 import com.example.app_usuario.Registro.RegistroUsuario;
+import com.example.app_usuario.menu.MensajeFragment;
 import com.example.app_usuario.utils.InputValidation;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,6 +28,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Log_in extends AppCompatActivity {
@@ -104,6 +107,7 @@ public class Log_in extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             //FirebaseUser user = mAuth.getCurrentUser();
                             Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
+                            checkUser();
                             startActivity(a);
 //Iniciar DASHBOARD u otra actividad luego del SigIn Exitoso
                         } else {
@@ -113,6 +117,15 @@ public class Log_in extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private final void checkUser() {
+        FirebaseUser currentUser = this.mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent((Context)this, MensajeFragment.class);
+            intent.putExtra("user", currentUser.getEmail());
+            this.finish();
+        }
+
     }
     public void Log_in_firebase(View view) {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

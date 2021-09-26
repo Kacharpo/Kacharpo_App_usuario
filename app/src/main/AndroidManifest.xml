@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.app_usuario">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -16,23 +17,26 @@
         android:roundIcon="@mipmap/ic_launcher_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.App_usuario">
+        <activity android:name=".ChatActivity"></activity>
         <activity
             android:name=".PrincipalMenuActivity"
             android:label="@string/title_activity_principal_menu"
-            android:theme="@style/Theme.App_usuario.NoActionBar"></activity>
+            android:theme="@style/Theme.App_usuario.NoActionBar" />
         <activity android:name=".BienvenidoActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDc-RTZCRzOWBS8r2v30SndwK9CzYv3Tew" />
+
         <activity android:name=".ConfirmarCuenta" />
         <activity android:name=".DisponibilidadActivity" />
         <activity android:name=".AlertaActivity" />
         <activity android:name=".Log_in" />
         <activity android:name=".Registro.RegistroUsuario" />
-        <activity android:name=".Principal"
-                  android:label="@string/title_activity_principal_menu"
-                  android:theme="@style/Theme.App_usuario.NoActionBar"/>
+        <activity
+            android:name=".Principal"
+            android:label="@string/title_activity_principal_menu"
+            android:theme="@style/Theme.App_usuario.NoActionBar" />
         <activity android:name=".RecuperarContra" />
         <activity android:name=".Splash">
             <intent-filter>

@@ -1,14 +1,29 @@
 package com.example.app_usuario.menu;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.app_usuario.ChatActivity;
 import com.example.app_usuario.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,9 +31,11 @@ import com.example.app_usuario.R;
  * create an instance of this fragment.
  */
 public class MensajeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    ListView userListView;
+    ArrayAdapter arrayAdapter;
+    ArrayList<String> users = new ArrayList<>();
+    FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -27,18 +44,10 @@ public class MensajeFragment extends Fragment {
     private String mParam2;
 
     public MensajeFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MensajeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static MensajeFragment newInstance(String param1, String param2) {
         MensajeFragment fragment = new MensajeFragment();
         Bundle args = new Bundle();
@@ -60,7 +69,44 @@ public class MensajeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mensaje, container, false);
+        View v = inflater.inflate(R.layout.fragment_mensaje,container,false);
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        userListView = v.findViewById(R.id.userListView);
+        databaseReference.child("RegistroConstructor").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        String email = dataSnapshot.child("correo").getValue().toString();
+                        if (!email.equals(mAuth.getCurrentUser().getEmail())){
+                            users.add(email);
+                        }
+                    }
+                    arrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, users);
+                    userListView.setAdapter(arrayAdapter);
+
+                }else{
+                    Toast.makeText(getActivity(), "Failed to load table", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Failed to load users", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        userListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                intent.putExtra("correo", users.get(position));
+                startActivity(intent);
+            }
+        });
+        return v;
     }
 }
