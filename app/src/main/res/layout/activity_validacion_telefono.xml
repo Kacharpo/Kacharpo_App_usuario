@@ -4,27 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfirmarCuenta">
+    tools:context=".Validacion_telefono">
+
+
+
     <TextView
         android:id="@+id/tv_c_bienvenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/tv_c_bienvenido"
+        android:text="Validación de número de teléfono"
         android:textColor="#000000"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tv_c_ingresa"
+        android:id="@+id/tv_telefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_c_bienvenido"
         android:layout_marginStart="1dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/tv_c_codigo" />
+        android:text="Ingresa el  número de telefono al que se enviara el código" />
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_telefono_l"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_telefono"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="18dp"
+        android:ems="10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_telefono"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="phone"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_enviar_codigo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_telefono_l"
+        android:layout_marginTop="16dp"
+        android:onClick="requestCode"
+        android:text="Enviar código"
+        app:cornerRadius="10dp"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_c_ingresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_enviar_codigo"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Ingresa el código que se te envió a tu número" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_c_codigo1_l"
@@ -32,22 +76,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_c_ingresa"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="16dp"
         android:ems="10">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_c_codigo1"
-            android:layout_width="50dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
             android:inputType="number"
-            android:maxLength="1"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btn_validar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_c_codigo1_l"
+        android:layout_marginTop="16dp"
+        android:onClick="signIn"
+        android:text="Validar"
+        app:cornerRadius="10dp"
+        tools:ignore="TextContrastCheck" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <!---<com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txt_c_codigo2_l"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="wrap_content"
@@ -153,31 +206,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+
     <TextView
         android:id="@+id/tv_c_intentos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_c_codigo1_l"
+        android:layout_below="@id/btn_validar"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/tv_c_intentos" />
+        android:text="@string/tv_c_intentos" />-->
 
-    <TextView
-        android:id="@+id/tv_c_recibir"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_c_intentos"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/tv_c_recibir" />
 
-    <Button
-        android:id="@+id/btn_c_reenviar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_c_recibir"
-        android:layout_marginTop="16dp"
-        android:text="@string/btn_c_reenviar"
-        app:cornerRadius="10dp"
-        tools:ignore="TextContrastCheck" />
 </RelativeLayout>

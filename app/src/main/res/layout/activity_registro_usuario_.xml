@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Registro.RegistroUsuario">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,197 +13,508 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <ImageView
-            android:id="@+id/img_perfil"
-            android:layout_width="match_parent"
-            android:layout_height="191dp"
-            app:srcCompat="@drawable/logo_transparent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textVnombreRUsuario"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_p"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#FF0101"
-                android:ems="10"
-                android:hint="Nombre"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                >
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_nombre"
+                <LinearLayout
+                    android:id="@+id/ly_c_p"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="#FF0101"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    android:maxLength="20"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textVnombreRApellido"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_c_c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@id/img_perfil"
+                            android:layout_alignBottom="@id/img_perfil"
+                            android:layout_marginRight="100dp"
+                            android:animateLayoutChanges="true"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:id="@+id/ly_c_c"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:background="#FFFFFF"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="6dp">
+
+
+                                    <ImageView
+                                        android:id="@+id/img_camara"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        app:srcCompat="@drawable/camara" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <ImageView
+                            android:id="@+id/img_perfil"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_centerHorizontal="true"
+                            tools:srcCompat="@drawable/perfil" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cv_c_s"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@id/img_perfil"
+                            android:layout_alignBottom="@id/img_perfil"
+                            android:layout_marginStart="100dp"
+                            android:animateLayoutChanges="true"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="4dp"
+                            app:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:id="@+id/ly_c_s"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:background="#FFFFFF"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:padding="6dp">
+
+
+                                    <ImageView
+                                        android:id="@+id/img_subir"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        app:srcCompat="@drawable/subir" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_nom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:hint="Apellido"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_apellido"
+                <LinearLayout
+                    android:id="@+id/ly_c_nom"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:textAlignment="center"
-                    android:maxLength="20"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_c_numero_l"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_nombre_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:backgroundTint="#FF0101"
+                            android:ems="10"
+                            android:hint="@string/txt_c_nombre"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_nombre"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:backgroundTint="#FF0101"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="textPersonName"
+                                android:maxLength="20"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_ape"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:hint="Numero"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_numero"
+                <LinearLayout
+                    android:id="@+id/ly_c_ape"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:maxLength="20"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textVCorreoRegUsuario"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_apellido_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ems="10"
+                            android:hint="@string/txt_c_apellido"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_apellido"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="textPersonName"
+                                android:maxLength="20"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:ems="10"
-                android:hint="Correo"
-                app:counterEnabled="true"
-                app:counterMaxLength="50"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_correo"
+                <LinearLayout
+                    android:id="@+id/ly_c_num"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableTint="#FF2C2C"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textEmailAddress"
-                    android:shadowColor="#3F51B5"
-                    android:textAlignment="center"
-                    android:maxLength="50"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_c_fecha_l"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_numero_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ems="10"
+                            android:hint="@string/txt_c_numero"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_numero"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="20"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_cor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:hint="Fecha de Nacimiento"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_fecha"
+                <LinearLayout
+                    android:id="@+id/ly_c_cor"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:foregroundTint="#00BCD4"
-                    android:gravity="center"
-                    android:inputType="date"
-                    android:textAlignment="center"
-                    android:maxLength="20"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTTextPassRegUsuario"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_correo_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ems="10"
+                            android:hint="@string/txt_c_correo"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="50"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_correo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableTint="#FF2C2C"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="textEmailAddress"
+                                android:maxLength="50"
+                                android:shadowColor="#3F51B5"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_fec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:hint="Contraseña"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                app:endIconMode="password_toggle"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_contrasena"
+                <LinearLayout
+                    android:id="@+id/ly_c_fec"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPassword"
-                    android:textAlignment="center"
-                    android:maxLength="20"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTTextPassRegUsuarioConf"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_fecha_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ems="10"
+                            android:hint="@string/txt_c_fecha"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_fecha"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:foregroundTint="#00BCD4"
+                                android:gravity="center"
+                                android:inputType="date"
+                                android:maxLength="20"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:ems="10"
-                android:hint="Confirmar Contraseña"
-                app:counterEnabled="true"
-                app:counterMaxLength="20"
-                app:endIconMode="password_toggle"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
 
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txt_c_confirmar"
+                <LinearLayout
+                    android:id="@+id/ly_c_con"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="textPassword"
-                    android:textAlignment="center"
-                    android:maxLength="20"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_contrasena_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ems="10"
+                            android:hint="@string/txt_c_contrasena"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+
+                            app:endIconMode="password_toggle">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_contrasena"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="textPassword"
+                                android:maxLength="20"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_c_cof"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:id="@+id/ly_c_cof"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txt_c_confirmar_l"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:ems="10"
+                            android:hint="@string/txt_c_confirmar"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20"
+                            app:endIconMode="password_toggle"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_c_confirmar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:inputType="textPassword"
+                                android:maxLength="20"
+                                android:textAlignment="center" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <RadioButton
                 android:id="@+id/rb_c_terminos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="He leido y acepto las politicas de privacidad" />
+                android:text="@string/rb_c_terminos" />
 
             <Button
                 android:id="@+id/btn_c_aceptar"
@@ -213,13 +524,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="#F44336"
-                android:text="Aceptar"
+                android:text="@string/btn_c_aceptar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:cornerRadius="10dp" />
 
         </LinearLayout>
     </ScrollView>
 
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

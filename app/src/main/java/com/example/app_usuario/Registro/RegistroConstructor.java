@@ -16,8 +16,7 @@ public class RegistroConstructor implements Serializable {
     private String contrasena;
 
 
-    public RegistroConstructor(String key, String nombre, String apellido, String fecha, String numero, String correo, String contrasena) {
-        this.key = key;
+    public RegistroConstructor( String nombre, String apellido, String fecha, String numero, String correo, String contrasena) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fecha = fecha;

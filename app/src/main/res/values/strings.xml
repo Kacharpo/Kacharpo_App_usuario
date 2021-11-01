@@ -69,4 +69,18 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    //REGISTRO
+    //ResgistroControl
+    <string name="txt_c_nombre">Nombre</string>
+    <string name="txt_c_apellido">Apellido</string>
+    <string name="txt_c_fecha">Fecha de nacimiento</string>
+    <string name="txt_c_numero">Numero de celular</string>
+    <string name="txt_c_correo">Correo</string>
+    <string name="txt_c_contrasena">Contraseña</string>
+    <string name="txt_c_confirmar">Confirmar contraseña</string>
+    <string name="btn_c_aceptar">Aceptar</string>
+    <string name="rb_c_terminos">Acepto Terminos y Condiciones</string>
+    //Facebook
+    <string name="facebook_app_id">1577550875924576</string>
+    <string name="fb_login_protocol_scheme">fb269823724953921</string>
 </resources>
