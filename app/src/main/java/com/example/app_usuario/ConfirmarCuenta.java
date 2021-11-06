@@ -268,7 +268,7 @@ public class ConfirmarCuenta extends AppCompatActivity {
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            RegistroConstructor emp = new RegistroConstructor( "nombre", "apellido", "fecha", "numero", "correo", "contrasena");
+                            RegistroConstructor emp = new RegistroConstructor( "nombre", "apellido", "fecha", "numero", "correo", "contrasena","confirmado");
 
                             if (snapshot.exists()){
 

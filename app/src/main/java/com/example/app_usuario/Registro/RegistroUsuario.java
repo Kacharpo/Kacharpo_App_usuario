@@ -141,6 +141,8 @@ public class RegistroUsuario extends AppCompatActivity {
             rb_terminos = (RadioButton) findViewById(R.id.rb_c_terminos);
             cv_Camara = findViewById(R.id.cv_c_c);
             cv_Subir = findViewById(R.id.cv_c_s);
+
+
             final String recipientEmail = "kacharpo.service@gmail.com";
             final String recipientPassword = "Kacharpo2000";
             final String subject = "Codigo de confrimacion";
@@ -173,7 +175,7 @@ public class RegistroUsuario extends AppCompatActivity {
                     boolean confirmar_b = InputValidation.isValidEditText(et_confirmar, "Campo requerido");
                     boolean terminos = rb_terminos.isChecked();
 
-                    if (nombre_b && apellido_b && fecha_b && numero_b && correo_b && contrasena_b && confirmar_b) {
+                    if (nombre_b && apellido_b && fecha_b && numero_b && correo_b && contrasena_b && confirmar_b ) {
                         if (contrasena.equals(confirmar)) {
                             if (contrasena.length() >= 6) {
                                 if (terminos == true) {
@@ -181,7 +183,7 @@ public class RegistroUsuario extends AppCompatActivity {
                                         //createUser();
                                         String email = et_correo.getText().toString();
                                         String password = et_contrasena.getText().toString();
-                                        Toast.makeText(getApplicationContext(), "Paso por aqui", Toast.LENGTH_SHORT).show();
+
                                         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -189,9 +191,9 @@ public class RegistroUsuario extends AppCompatActivity {
 
                                                     Toast.makeText(getApplicationContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
 
-                                                    RegistroConstructor emp = new RegistroConstructor( nombre, apellido, fecha, numero, correo, contrasena);
+                                                    RegistroConstructor emp = new RegistroConstructor( nombre, apellido, fecha, numero, correo, contrasena,"false");
                                                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                                                    databaseReference.child("RegistroConstructor").addValueEventListener(new ValueEventListener() {
+                                                    databaseReference.child("Registro").addValueEventListener(new ValueEventListener() {
 
                                                         @Override
                                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -390,6 +392,8 @@ public class RegistroUsuario extends AppCompatActivity {
             correos.putExtra("numero",numero);
             correos.putExtra("correo",correo);
             correos.putExtra("contrasena",contrasena);
+            correos.putExtra("ruta",ruta);
+            correos.putExtra("licencia",licencia);
 
             startActivity(correos);} catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error: "+e, Toast.LENGTH_SHORT).show();

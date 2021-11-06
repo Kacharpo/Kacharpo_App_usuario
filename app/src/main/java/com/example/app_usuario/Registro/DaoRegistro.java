@@ -1,6 +1,7 @@
 package com.example.app_usuario.Registro;
 
 
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -13,7 +14,7 @@ public class DaoRegistro {
     public DaoRegistro()
     {
         FirebaseDatabase db =FirebaseDatabase.getInstance();
-        databaseReference = db.getReference(RegistroConstructor.class.getSimpleName());
+        databaseReference = db.getReference("Registro");
     }
     public Task<Void> add(RegistroConstructor emp)
     {

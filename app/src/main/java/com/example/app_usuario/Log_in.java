@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,7 +16,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.example.app_usuario.Registro.DaoRegistro;
 import com.example.app_usuario.Registro.RegistroConstructor;
 import com.example.app_usuario.Registro.RegistroUsuario;
@@ -39,8 +41,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -109,9 +110,6 @@ public class Log_in extends AppCompatActivity {
         // Inicializar Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -214,6 +212,10 @@ public class Log_in extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+
+                            SharedPreferences prefs = getSharedPreferences("shared_pref_name", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+
                             //FirebaseUser user = mAuth.getCurrentUser();
                             Intent a = new Intent(getApplicationContext(), PrincipalMenuActivity.class);
                             checkUser();

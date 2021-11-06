@@ -81,6 +81,7 @@
     <string name="btn_c_aceptar">Aceptar</string>
     <string name="rb_c_terminos">Acepto Terminos y Condiciones</string>
     //Facebook
-    <string name="facebook_app_id">1577550875924576</string>
-    <string name="fb_login_protocol_scheme">fb269823724953921</string>
+    <string name="facebook_app_id">1020429612146866</string>
+    <string name="fb_login_protocol_scheme">fb1020429612146866</string>
+
 </resources>

@@ -1,6 +1,5 @@
 package com.example.app_usuario.menu;
 
-
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -68,11 +67,6 @@ import java.util.Locale;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PrincipalFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PrincipalFragment extends Fragment implements OnMapReadyCallback ,GoogleMap.OnMarkerClickListener,GoogleMap.OnMarkerDragListener, GoogleMap.OnInfoWindowClickListener  {
     //Matriz de lugares para AutoCompliteText
     private static final String[] COUNTRIES = new String[]{

@@ -73,7 +73,7 @@ public class MensajeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userListView = v.findViewById(R.id.userListView);
-        databaseReference.child("RegistroConstructor").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Registro").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
